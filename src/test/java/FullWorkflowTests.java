@@ -30,8 +30,8 @@ public class FullWorkflowTests {
   public JenkinsRule jenkins = new JenkinsRule();
 
   private static final String IMAGE_TO_SCAN = "my-image:tag";
-  private static final String MOCK_GATES_REPORT_PASS = "[ {\"foo-digest\": { \"" + IMAGE_TO_SCAN + "\": [ { \"status\": \"pass\", \"detail\": { \"result\": { \"result\": {} } }} ] } } ]";
-  private static final String MOCK_GATES_REPORT_FAIL = "[ {\"foo-digest\": { \"" + IMAGE_TO_SCAN + "\": [ { \"status\": \"fail\", \"detail\": { \"result\": { \"result\": {} } }} ] } } ]";
+  private static final String MOCK_GATES_REPORT_PASS = "[ {\"foo-digest\": { \"" + IMAGE_TO_SCAN + "\": [ { \"status\": \"pass\", \"detail\": { \"result\": { \"result\": {} },  \"policy\": { \"policies\": [{ \"policyName\": \"default\",\"policyId\": \"default\"}] }   }} ] } } ]";
+  private static final String MOCK_GATES_REPORT_FAIL = "[ {\"foo-digest\": { \"" + IMAGE_TO_SCAN + "\": [ { \"status\": \"fail\", \"detail\": { \"result\": { \"result\": {} },  \"policy\": { \"policies\": [{ \"policyName\": \"default\",\"policyId\": \"default\"}] }   }} ] } } ]";
   private static final String MOCK_VULNS_REPORT = "{ \"vulnerabilities\": [] }";
   private SysdigSecureClient client;
 
@@ -50,7 +50,7 @@ public class FullWorkflowTests {
 
     ContainerRunner containerRunner = mock(ContainerRunner.class);
     ContainerRunnerFactory containerRunnerFactory = mock (ContainerRunnerFactory.class);
-    when(containerRunnerFactory.getContainerRunner(any(), any())).thenReturn(containerRunner);
+    when(containerRunnerFactory.getContainerRunner(any(), any(), any())).thenReturn(containerRunner);
 
     InlineScannerRemoteExecutor.setContainerRunnerFactory(containerRunnerFactory);
     BackendScanner.setBackendScanningClientFactory(backendClientFactory);
