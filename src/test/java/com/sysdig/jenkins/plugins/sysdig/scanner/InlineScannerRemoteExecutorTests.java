@@ -372,7 +372,7 @@ public class InlineScannerRemoteExecutorTests {
   public void dockerfileIsProvidedAsParameter() throws Exception {
     setupMocks();
 
-    File tmp = File.createTempFile("foo-dockerfile", "");
+    File tmp = Files.createTempFile("foo-dockerfile", "").toFile();
     tmp.deleteOnExit();
 
     scannerRemoteExecutor = new InlineScannerRemoteExecutor(IMAGE_TO_SCAN, tmp.getAbsolutePath(), config, logger, nodeEnvVars);
@@ -388,7 +388,7 @@ public class InlineScannerRemoteExecutorTests {
   public void dockerfileIsCopiedInsideContainer() throws Exception {
     setupMocks();
 
-    File tmp = File.createTempFile("foo-dockerfile", "");
+    File tmp = Files.createTempFile("foo-dockerfile", "").toFile();
     tmp.deleteOnExit();
 
     scannerRemoteExecutor = new InlineScannerRemoteExecutor(IMAGE_TO_SCAN, tmp.getAbsolutePath(), config, logger, nodeEnvVars);

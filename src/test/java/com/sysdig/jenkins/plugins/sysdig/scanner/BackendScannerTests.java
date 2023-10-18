@@ -20,6 +20,7 @@ import org.mockito.quality.Strictness;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
@@ -89,7 +90,7 @@ public class BackendScannerTests {
     //Given
     byte[] dockerfileBytes = "foo content of dockerfile".getBytes(StandardCharsets.UTF_8);
     //Given
-    File f = File.createTempFile("test", "");
+    File f = Files.createTempFile("test", "").toFile();
     FileUtils.writeByteArrayToFile(f, dockerfileBytes);
 
     // When

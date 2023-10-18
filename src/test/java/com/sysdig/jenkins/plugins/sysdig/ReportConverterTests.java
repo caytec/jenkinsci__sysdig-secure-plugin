@@ -80,7 +80,7 @@ public class ReportConverterTests {
     results.add(new ImageScanningResult("foo-tag1", "foo-digest1", "pass", gatesReport, new JSONObject(), new JSONArray()));
     results.add(new ImageScanningResult("foo-tag2", "foo-digest2", "pass", gatesReport2, new JSONObject(), new JSONArray()));
 
-    File tmp = File.createTempFile("gatesreport", "");
+    File tmp = Files.createTempFile("gatesreport", "").toFile();
     tmp.deleteOnExit();
 
     // When
@@ -109,7 +109,7 @@ public class ReportConverterTests {
     JSONObject vulnsReport2 = (JSONObject) JSONSerializer.toJSON(new String(data, StandardCharsets.UTF_8));
     results.add(new ImageScanningResult("foo-tag2", "foo-digest2", "pass", new JSONObject(), vulnsReport2, new JSONArray()));
 
-    File tmp = File.createTempFile("vulnerabilitiesreport", "");
+    File tmp = Files.createTempFile("vulnerabilitiesreport", "").toFile();
     tmp.deleteOnExit();
 
     // When
